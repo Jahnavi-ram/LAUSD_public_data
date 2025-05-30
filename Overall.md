@@ -185,3 +185,43 @@ This analysis provides a deeper lens into educational opportunity and systemic b
 
 ✨ Let’s now dive into [Problem 1: Are Students in Certain Zip Codes Systematically Underserved in School Seat Offers?](Problem1_Zipcode_Equity.md) →
 
+
+
+
+
+
+
+
+
+
+
+
+A. Demand vs. Supply Imbalance by ZIP Code
+
+Top applicant zip codes by number of applications
+Where is demand the highest?
+Top applicant zip codes by number of seat offers
+Where are seats being granted most?
+Acceptance rate by applicant zip code
+Which zip codes have low seat_offer/application ratios?
+Zip codes with lowest acceptance rates (with a minimum number of applications, e.g. >10)
+To avoid skew from single-applicant zip codes.
+Top 10 zip codes with the widest gap between applications and seat offers
+Potential red flags for underserved areas.
+B. Local vs. Non-Local Preference
+
+What % of applicants apply to schools within their own zip code?
+Do students prefer neighborhood schools?
+What % of seat offers go to local vs non-local applicants?
+Are schools favoring outsiders over their own neighborhood kids?
+C. School Perspective: ZIP Code Diversity
+
+Which school zip codes receive applications from the widest variety of applicant zip codes?
+Are some schools becoming regional hubs?
+Which schools admit students mostly from their own zip code vs other zip codes?
+May reveal equitable vs selective practices.
+D. Severity Flags
+
+Which zip codes have 0 seat offers despite receiving applications?
+Strong signal of being overlooked.
+
