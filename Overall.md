@@ -196,32 +196,34 @@ This analysis provides a deeper lens into educational opportunity and systemic b
 
 
 
-A. Demand vs. Supply Imbalance by ZIP Code
+💡 Final Chosen 10 (Grouped by Insight Theme):
+A. Demand vs. Supply & Seat Offer Rates
 
-Top applicant zip codes by number of applications
-Where is demand the highest?
-Top applicant zip codes by number of seat offers
-Where are seats being granted most?
-Acceptance rate by applicant zip code
-Which zip codes have low seat_offer/application ratios?
-Zip codes with lowest acceptance rates (with a minimum number of applications, e.g. >10)
-To avoid skew from single-applicant zip codes.
-Top 10 zip codes with the widest gap between applications and seat offers
-Potential red flags for underserved areas.
-B. Local vs. Non-Local Preference
+✅ Top applicant zip codes by number of applications
+Where is demand highest?
+✅ Top applicant zip codes by number of seat offers
+Where are seats granted most?
+✅ Acceptance rate by applicant zip code
+Basic equity lens: offers/applications.
+✅ Zip codes with lowest acceptance rates (with min applications > 10)
+Avoids noise and highlights truly underserved ZIPs.
+✅ Top 10 zip codes with widest gap between applications and seat offers
+Reveals extreme demand–supply mismatches.
+B. Local vs. Non-Local Preferences
 
-What % of applicants apply to schools within their own zip code?
-Do students prefer neighborhood schools?
-What % of seat offers go to local vs non-local applicants?
-Are schools favoring outsiders over their own neighborhood kids?
-C. School Perspective: ZIP Code Diversity
+✅ What % of applicants apply to schools within their own zip code?
+Shows student preference for neighborhood schools.
+✅ Do students applying within their own ZIP get better seat offer rates?
+Equity angle on proximity-based acceptance.
+C. Severity Flags / Anomalies
 
-Which school zip codes receive applications from the widest variety of applicant zip codes?
-Are some schools becoming regional hubs?
-Which schools admit students mostly from their own zip code vs other zip codes?
-May reveal equitable vs selective practices.
-D. Severity Flags
+✅ Which zip codes have 0 seat offers despite receiving applications?
+Immediate red flag for total exclusion.
+D. Equity Outliers
 
-Which zip codes have 0 seat offers despite receiving applications?
-Strong signal of being overlooked.
+✅ Which zip codes fall significantly below the average seat offer rate?
+Statistical inequity using z-score or SD logic.
+E. Geographic Pattern Summary
 
+✅ What patterns emerge if we group zip codes into regions (e.g., East vs. West LA)?
+Spatial justice insight.
