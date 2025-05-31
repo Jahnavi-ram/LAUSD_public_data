@@ -123,4 +123,30 @@ CREATE TABLE dual_language_applications (
     applications INT,
     seat_offers INT
 );
+### Query 1: Total Applications – Dual vs Non-Dual
+
+**Purpose:**
+Understand the scale of Dual Language program interest compared to General applicants.
+
+**SQL:**
+
+```sql
+SELECT
+  dual_language,
+  SUM(applications) AS total_applications
+FROM
+  public.dual_language_applications
+GROUP BY
+  dual_language;
+```
+
+**Output:**
+
+| dual\_language | total\_applications |
+| -------------- | ------------------- |
+| No             | 150,439             |
+| Yes            | 10,973              |
+
+**🧠 Insight:**
+Only **6.8% of total applications** were to Dual Language programs, while over **93% were to General programs**. This suggests that while demand for Dual Language programs exists, it remains a niche offering. LAUSD may want to investigate whether the limited uptake is due to **availability**, **awareness**, or **barriers to access** — especially if equity is a concern.
 
