@@ -374,3 +374,37 @@ ORDER BY school_type, dual_language;
 - **Self-Contained Magnet** schools also showed slightly better acceptance for Dual Language applicants (**15.10%**) than general (**15.09%**), suggesting no bias.  
 
 This reveals that some school types (especially Magnet) may be more inclusive or better structured for Dual Language placement, while others may need policy or capacity review.
+
+
+### Query 8: Acceptance Rate by Community of Schools
+
+**Purpose:**  
+Explore whether disparities in seat offer outcomes are tied to specific regional communities of schools across LAUSD.
+
+**SQL Code:**
+```sql
+SELECT 
+  community_of_schools,
+  dual_language,
+  SUM(applications) AS total_applications,
+  SUM(seat_offers) AS total_offers,
+  ROUND(
+    (SUM(seat_offers)::DECIMAL / NULLIF(SUM(applications), 0)) * 100, 2
+  ) AS acceptance_rate_percent
+FROM 
+  public.dual_language_applications
+WHERE 
+  community_of_schools IS NOT NULL AND dual_language IS NOT NULL
+GROUP BY 
+  community_of_schools, dual_language
+ORDER BY 
+  community_of_schools, dual_language;
+```
+
+**Insight:**  
+The data shows meaningful regional differences:
+- In **BOYLE HEIGHTS COS**, Non-Dual applicants had an acceptance rate of **36.69%**, while Dual Language applicants only received **22.75%**.
+- In **BELL/CUDHY/MAYWD COS**, the gap is even wider — **16.81%** for Non-Dual vs only **6.4%** for Dual Language applicants.
+- Conversely, **ACHIEVEMENT NETWORK** shows more balanced outcomes with **28.99%** (Non-Dual) and **20.93%** (Dual Language).
+
+This suggests that certain communities may have systemic disparities in dual language seat offer outcomes — a point worth further investigation by LAUSD.
