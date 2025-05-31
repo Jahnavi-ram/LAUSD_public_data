@@ -345,3 +345,32 @@ LIMIT 15;
 - 🏫 **3rd Street Elementary** and **Broadway Elementary DL Two-Way Im Spanish** followed with **241** and **227** applications respectively.
 - This demand distribution highlights potential flagship campuses and could guide future program expansion, marketing, or resource allocation.
 
+
+### 🧪 Query 7: Application and Offer Breakdown by School Type
+
+**Purpose:**  
+Understand if certain school types (e.g., Magnet, Elementary, Dual Language) show differences in acceptance rates between Dual Language and General applicants.
+
+**SQL:**
+```sql
+SELECT 
+  school_type,
+  dual_language,
+  SUM(applications) AS total_applications,
+  SUM(seat_offers) AS total_offers,
+  ROUND(
+    (SUM(seat_offers)::DECIMAL / NULLIF(SUM(applications), 0)) * 100, 2
+  ) AS acceptance_rate_percent
+FROM public.dual_language_applications
+WHERE school_type IS NOT NULL AND dual_language IS NOT NULL
+GROUP BY school_type, dual_language
+ORDER BY school_type, dual_language;
+```
+
+**Insight:**  
+- In **Magnet Center - Elementary** schools, Dual Language applicants had a **higher acceptance rate (26.21%)** than non-dual applicants (22.25%).  
+- In **DUAL LANGUAGE (DLC) - ELEM** schools, both groups had lower success, but Dual Language applicants still slightly outperformed: **13.08% vs 11.42%**.  
+- However, in **Elementary Schools**, both Dual and Non-Dual applicants experienced **low acceptance rates**, under **7.2%**.  
+- **Self-Contained Magnet** schools also showed slightly better acceptance for Dual Language applicants (**15.10%**) than general (**15.09%**), suggesting no bias.  
+
+This reveals that some school types (especially Magnet) may be more inclusive or better structured for Dual Language placement, while others may need policy or capacity review.
