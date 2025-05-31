@@ -445,3 +445,49 @@ Examples:
 This pattern flags potential **systemic exclusion**, reporting gaps, or **program-level access bias** that warrants deeper investigation.
 
 
+## 📊 Query 10: Acceptance Rate Gap (Non-Dual – Dual) by School
+
+**Purpose:** Quantify the magnitude of disparity to highlight where interventions are needed most.
+
+**SQL Code:**
+
+```sql
+SELECT 
+  school,
+  SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) AS dual_apps,
+  SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END) AS dual_offers,
+  ROUND(
+    SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END)::DECIMAL 
+    / NULLIF(SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END), 0) * 100,
+    2
+  ) AS dual_acceptance_rate,
+  SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) AS non_dual_apps,
+  SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END) AS non_dual_offers,
+  ROUND(
+    SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END)::DECIMAL 
+    / NULLIF(SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END), 0) * 100,
+    2
+  ) AS non_dual_acceptance_rate,
+  ROUND(
+    ROUND(SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END)::DECIMAL 
+    / NULLIF(SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END), 0) * 100, 2)
+    -
+    ROUND(SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END)::DECIMAL 
+    / NULLIF(SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END), 0) * 100, 2),
+    2
+  ) AS rate_gap_percent
+FROM public.dual_language_applications
+GROUP BY school
+HAVING 
+  SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) >= 10 AND
+  SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) >= 10
+ORDER BY rate_gap_percent DESC;
+```
+
+**Insight:**
+
+* Schools like **John C Fremont Senior High** and **James Monroe Senior High** show the largest acceptance rate gaps of **29.67%** and **28.76%**, favoring non-dual applicants.
+* Even schools like **Elysian Heights Elementary Arts Magnet**, which do offer dual seats, show a **28.66%** gap in favor of non-dual students.
+* These wide gaps may indicate **systemic bias**, mismatched evaluation rubrics, or operational limitations in accommodating dual language applicants.
+
+---
