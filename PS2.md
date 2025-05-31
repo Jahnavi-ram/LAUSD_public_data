@@ -219,3 +219,54 @@ LAUSD should investigate:
 * Whether sufficient seats are allocated to Dual Language programs.
 * If demand outpaces supply in specific regions or language tracks.
 * Policy mechanisms ensuring fair access to bilingual opportunities.
+
+### Query 4: Acceptance Rate by ZIP – Dual vs Non-Dual
+
+**Purpose:** Spot regional ZIP-level disparities in admission outcomes between Dual Language and Non-Dual applicants.
+
+---
+
+**SQL:**
+
+```sql
+SELECT
+  zip_code,
+  SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) AS dual_apps,
+  SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END) AS dual_offers,
+  ROUND((SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END)::DECIMAL / NULLIF(SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END), 0)) * 100, 2) AS dual_acceptance_rate,
+  SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) AS non_dual_apps,
+  SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END) AS non_dual_offers,
+  ROUND((SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END)::DECIMAL / NULLIF(SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END), 0)) * 100, 2) AS non_dual_acceptance_rate
+FROM (
+  SELECT
+    zip_code, dual_language, applications, seat_offers
+  FROM public.dual_language_applications
+  WHERE zip_code IS NOT NULL
+) AS summarized
+GROUP BY zip_code
+HAVING (
+  MAX(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) >= 10 OR
+  MAX(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) >= 10
+)
+ORDER BY dual_acceptance_rate ASC NULLS LAST;
+```
+
+---
+
+**Insight:**
+
+This query highlights clear ZIP-level disparities in seat offer rates:
+
+* **ZIP 90810:** Dual applicants had **0% acceptance** (0 of 32), while Non-Duals had **17.16%** (35 of 204).
+* **ZIP 90063:** Dual applicants had **1.2%** success, while Non-Duals had **23.73%**.
+* **ZIP 90018:** Duals = 2.86%, Non-Duals = 24.27%.
+* Several ZIPs (like **90017**, **91356**, **91303**) show **0% offers for Duals** despite strong participation from both groups.
+
+These ZIP-level patterns provide critical signals for LAUSD to:
+
+* Audit the **geographic reach and fairness** of Dual Language seat allocation.
+* Reassess **program capacity** in underserved ZIPs.
+* Address the **acceptance gap** and evaluate if Dual program access is regionally imbalanced.
+
+This granular ZIP analysis strengthens the case for a **data-driven equity review** of program availability.
+
