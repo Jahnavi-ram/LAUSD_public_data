@@ -153,4 +153,32 @@ GROUP BY
 **🧠 Insight:**
 Only **6.8% of total applications** were to Dual Language programs, while over **93% were to General programs**. This suggests that while demand for Dual Language programs exists, it remains a niche offering. LAUSD may want to investigate whether the limited uptake is due to **availability**, **awareness**, or **barriers to access** — especially if equity is a concern.
 
+### 🧪 Query 2: Total Seat Offers – Dual vs Non-Dual
+
+**Purpose:** See if Dual Language applicants receive proportionate offers compared to general program applicants.
+
+```sql
+SELECT
+  dual_language,
+  SUM(seat_offers) AS total_seat_offers
+FROM
+  public.dual_language_applications
+GROUP BY
+  dual_language;
+```
+
+**Output:**
+
+| dual\_language | total\_seat\_offers |
+| -------------- | ------------------- |
+| No             | 30185               |
+| Yes            | 1600                |
+
+**Insight:**
+
+* Dual Language applicants received **1,600** seat offers.
+* Non-Dual applicants received **30,185** seat offers.
+* While Dual Language applicants made up **\~6.8%** of total applications (from Query 1), they received only **\~5%** of total offers.
+
+This suggests a potential **underservice or bottleneck** in Dual Language program placements. LAUSD may need to review whether available seats in such programs meet demand, and whether placement policies unintentionally limit access for Dual Language applicants.
 
