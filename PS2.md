@@ -270,3 +270,50 @@ These ZIP-level patterns provide critical signals for LAUSD to:
 
 This granular ZIP analysis strengthens the case for a **data-driven equity review** of program availability.
 
+
+### ✳️ Query 5: Acceptance Rate by School – Dual vs Non-Dual
+
+**Purpose:**  
+Identify schools where Dual Language applicants experience significantly different acceptance rates compared to their General applicant peers. This can help LAUSD flag schools where selection processes may be unintentionally skewed.
+
+**SQL:**
+```sql
+SELECT
+    school,
+    SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) AS dual_apps,
+    SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END) AS dual_offers,
+    ROUND(
+        SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END)::DECIMAL
+        / NULLIF(SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END), 0) * 100, 2
+    ) AS dual_acceptance_rate,
+    SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) AS non_dual_apps,
+    SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END) AS non_dual_offers,
+    ROUND(
+        SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END)::DECIMAL
+        / NULLIF(SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END), 0) * 100, 2
+    ) AS non_dual_acceptance_rate
+FROM public.dual_language_applications
+GROUP BY school
+HAVING 
+    SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) >= 10
+    AND SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) >= 10
+ORDER BY ABS(
+    ROUND(SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END)::DECIMAL / NULLIF(SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END), 0) * 100, 2)
+    -
+    ROUND(SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END)::DECIMAL / NULLIF(SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END), 0) * 100, 2)
+) DESC;
+```
+
+**Insight:**  
+Some schools display substantial differences in success rates:
+
+- 🎯 **Betty Plasencia Elementary** offered admission to **69.23% of Dual applicants** vs only **22.41% of General applicants**.
+- 🛑 **James Monroe Senior High** accepted **0% of Dual applicants**, despite processing **13 applications**.
+- ⚠️ **San Fernando Senior High** and **Nathaniel Narbonne Senior High** also had **0% Dual Language acceptance** despite receiving 11+ applications each.
+- 🟢 Conversely, **Elysian Heights Elementary Arts Magnet** showed a **more balanced outcome**, with **31.58% Dual vs 60.24% Non-Dual** acceptance.
+
+These gaps may point to:
+- Capacity limitations in Dual tracks
+- Manual prioritization
+- Policy or awareness issues that need review
+
