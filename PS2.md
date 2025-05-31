@@ -317,3 +317,31 @@ These gaps may point to:
 - Manual prioritization
 - Policy or awareness issues that need review
 
+
+
+### 🧪 Query 6: Top Schools by Dual Language Application Volume
+
+**Purpose:**  
+Discover which schools or programs are most in demand among Dual Language applicants.
+
+**SQL:**
+```sql
+SELECT 
+  school,
+  SUM(applications) AS dual_language_applications
+FROM 
+  public.dual_language_applications
+WHERE 
+  dual_language = 'Yes'
+GROUP BY 
+  school
+ORDER BY 
+  dual_language_applications DESC
+LIMIT 15;
+```
+
+**Insight:**  
+- 🏫 **John Burroughs Middle School** had the highest Dual Language interest with **349 applications**.
+- 🏫 **3rd Street Elementary** and **Broadway Elementary DL Two-Way Im Spanish** followed with **241** and **227** applications respectively.
+- This demand distribution highlights potential flagship campuses and could guide future program expansion, marketing, or resource allocation.
+
