@@ -125,8 +125,9 @@ CREATE TABLE dual_language_applications (
 );
 
 ---
+### 🛠️ Step 3: Importing to PostgreSQL
 ### Query 1: Total Applications – Dual vs Non-Dual
-
+---
 **Purpose:**
 Understand the scale of Dual Language program interest compared to General applicants.
 
@@ -141,7 +142,7 @@ FROM
 GROUP BY
   dual_language;
 ```
-
+---
 **Output:**
 
 | dual\_language | total\_applications |
