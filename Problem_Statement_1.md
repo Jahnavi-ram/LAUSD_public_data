@@ -114,10 +114,11 @@ Imported using pgAdmin import tool.
 
 ## ✅ Final Summary
 
+
 This investigation revealed **ZIP-level and regional inequities** in LAUSD’s 2018–2019 school seat allocation:
 
-- Some areas, especially in **South Bay, East LA, and the outskirts** — had **repeated underperformance**, with 0% seat offers or massive unplaced demand.
-- Students applying **outside their ZIP** dominate applications, yet **local students were favored**, with a 10%+ better success rate.
-- Certain ZIPs are **statistical outliers** in a system meant to serve all equitably.
+- Some areas, especially in South Bay, East LA, and outer districts like Antelope Valley — showed repeated underperformance, including 0% acceptance rates and thousands of unplaced students.
+- Students applying **outside their ZIP** submitted the vast majority of applications, yet local applicants had a 10%+ higher success rate — a pattern worth exploring through policy.
+- Certain ZIPs are **statistical outliers** ,falling well below the citywide average acceptance rate, signaling structural access issues rather than isolated anomalies..
 
-By acting on these findings, LAUSD can take meaningful steps toward **fairer, regionally balanced school access for all students**.
+By addressing these findings, LAUSD can take meaningful, data-driven steps toward **fairer, regionally balanced, geographically fair school access for all students**.
