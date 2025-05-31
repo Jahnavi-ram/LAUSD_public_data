@@ -491,3 +491,11 @@ ORDER BY rate_gap_percent DESC;
 * These wide gaps may indicate **systemic bias**, mismatched evaluation rubrics, or operational limitations in accommodating dual language applicants.
 
 ---
+> ⚠️ **Equity Concern Highlight:**
+> Several schools showed strong acceptance rates for general (non-dual) applicants — often **25% or higher** — while offering **0 seats** to Dual Language applicants, despite receiving **10+ applications** from the latter group.
+> 
+> 📍 Example: *San Fernando Senior High* had:
+> - 11 applications from Dual Language students → **0 offers**
+> - 436 applications from General applicants → **109 offers (~25%)**
+> 
+> This disparity suggests **systematic exclusion**, **implicit bias**, or **program-specific access barriers** that merit urgent investigation by LAUSD leadership.
