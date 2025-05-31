@@ -4,26 +4,26 @@ This project investigates whether **students from specific ZIP codes** within th
 
 ---
 
-## 🎯 Key Insights for LAUSD Decision-Makers
+## Key Insights for LAUSD Decision-Makers
 
-- 📍 **ZIP codes 90650, 90212, 93063** had **0% acceptance rates** with over 10 applications, a strong indicator of exclusion.
-- 📍 ZIPs like **90044, 90011, and 91342** showed **3,000+ unmatched applications**, revealing areas with **high demand but low fulfillment**.
-- 🚍 Students from **outer regions** (prefix 935 - Antelope Valley, 903 - South Bay) have **<10% acceptance rates**, compared to ~19% in central or valley ZIPs.
-- 🧭 Only **3.01%** of students applied to schools in their own ZIP, and **local applicants were far more likely** to receive offers.
-- ✅ Local applicants had a **27.35% acceptance rate**, vs. 17.55% for non-local — a more reasonable but still significant advantage.
-
----
-
-### 📢 Recommendations:
-
-- 🔍 **Conduct equity audits** in repeatedly underperforming ZIP codes (90650, 90212, 93063, 91801).
-- 🚍 Expand access or transportation support for underserved regions (935, 903).
-- 📘 Review offer allocation policies to clarify how multiple seat offers are counted and communicated across applications — especially for local applicants.
-- 🏫 Evaluate school/program coverage in low-offer areas to support targeted resource allocation.
+-  **ZIP codes 90650, 90212, 93063** had **0% acceptance rates** with over 10 applications, a strong indicator of exclusion.
+-  ZIPs like **90044, 90011, and 91342** showed **3,000+ unmatched applications**, revealing areas with **high demand but low fulfillment**.
+-  Students from **outer regions** (prefix 935 - Antelope Valley, 903 - South Bay) have **<10% acceptance rates**, compared to ~19% in central or valley ZIPs.
+-  Only **3.01%** of students applied to schools in their own ZIP, and **local applicants were far more likely** to receive offers.
+-  Local applicants had a **27.35% acceptance rate**, vs. 17.55% for non-local — a more reasonable but still significant advantage.
 
 ---
 
-## 📂 Dataset Used
+###  Recommendations:
+
+- � **Conduct equity audits** in repeatedly underperforming ZIP codes (90650, 90212, 93063, 91801).
+-  Expand access or transportation support for underserved regions (935, 903).
+-  Review offer allocation policies to clarify how multiple seat offers are counted and communicated across applications — especially for local applicants.
+-  Evaluate school/program coverage in low-offer areas to support targeted resource allocation.
+
+---
+
+##  Dataset Used
 
 **Name:** Applications and Seat Offers by Applicant Zip Code (2018–2019)  
 **Source:** LAUSD Open Data Portal  
@@ -31,7 +31,7 @@ This project investigates whether **students from specific ZIP codes** within th
 
 ---
 
-## 🧰 Tools Used
+##  Tools Used
 
 - **Excel**: Cleaning & formatting  
 - **PostgreSQL**: SQL-based querying  
@@ -39,7 +39,7 @@ This project investigates whether **students from specific ZIP codes** within th
 
 ---
 
-## 🔍 Step-by-Step Data Preparation
+##  Step-by-Step Data Preparation
 
 ### Step 1: Understanding the Columns
 Columns selected:
@@ -68,7 +68,7 @@ Imported using pgAdmin import tool.
 
 ---
 
-## 🔎 SQL Queries & Insights
+##  SQL Queries & Insights
 
 ### Query 1: Top ZIP Codes by Application Volume
 **Purpose:** Identify ZIPs with the highest demand  
@@ -112,7 +112,7 @@ Imported using pgAdmin import tool.
 
 ---
 
-## ✅ Final Summary
+##  Final Summary
 
 
 This investigation revealed **ZIP-level and regional inequities** in LAUSD’s 2018–2019 school seat allocation:
