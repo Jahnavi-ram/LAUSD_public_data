@@ -18,7 +18,7 @@ This project investigates whether **students from specific ZIP codes** within th
 
 - 🔍 **Conduct equity audits** in repeatedly underperforming ZIP codes (90650, 90212, 93063, 91801).
 - 🚍 Expand access or transportation support for underserved regions (935, 903).
-- 📊 Investigate **data integrity issues** behind inflated acceptance calculations in earlier versions.
+- 📘 Review offer allocation policies to clarify how multiple seat offers are counted and communicated across applications — especially for local applicants.
 - 🏫 Evaluate school/program coverage in low-offer areas to support targeted resource allocation.
 
 ---
