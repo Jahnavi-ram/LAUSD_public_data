@@ -408,3 +408,40 @@ The data shows meaningful regional differences:
 - Conversely, **ACHIEVEMENT NETWORK** shows more balanced outcomes with **28.99%** (Non-Dual) and **20.93%** (Dual Language).
 
 This suggests that certain communities may have systemic disparities in dual language seat offer outcomes — a point worth further investigation by LAUSD.
+
+
+
+### Query 9: Schools with Zero Offers for One Group
+
+**Purpose:**  
+Detect potential exclusion patterns where **either Dual Language or Non-Dual applicants receive no offers at all**, despite submitting at least 10 applications.
+
+**SQL:**
+```sql
+SELECT
+  school,
+  SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) AS dual_apps,
+  SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END) AS dual_offers,
+  SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) AS non_dual_apps,
+  SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END) AS non_dual_offers
+FROM public.dual_language_applications
+GROUP BY school
+HAVING 
+  (SUM(CASE WHEN dual_language = 'Yes' THEN applications ELSE 0 END) >= 10 AND
+   SUM(CASE WHEN dual_language = 'Yes' THEN seat_offers ELSE 0 END) = 0)
+  OR
+  (SUM(CASE WHEN dual_language = 'No' THEN applications ELSE 0 END) >= 10 AND
+   SUM(CASE WHEN dual_language = 'No' THEN seat_offers ELSE 0 END) = 0)
+ORDER BY school;
+```
+
+**Insight:**  
+We identified **67 schools** with zero seat offers for either Dual or Non-Dual applicants despite 10+ applications.  
+Examples:
+- 🏫 *Alexandria Avenue Elementary*: 46 Dual Apps → 0 Offers | 20 Non-Dual Apps → 0 Offers
+- 🏫 *Berendo Middle School*: 28 Dual Apps → 0 Offers | 50 Non-Dual Apps → 2 Offers
+- 🏫 *Arlington Heights Elementary*: 23 Dual Apps → 0 Offers | 17 Non-Dual Apps → 0 Offers
+
+This pattern flags potential **systemic exclusion**, reporting gaps, or **program-level access bias** that warrants deeper investigation.
+
+
