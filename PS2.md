@@ -182,3 +182,40 @@ GROUP BY
 
 This suggests a potential **underservice or bottleneck** in Dual Language program placements. LAUSD may need to review whether available seats in such programs meet demand, and whether placement policies unintentionally limit access for Dual Language applicants.
 
+### Query 3: Acceptance Rate – Dual vs Non-Dual
+
+**Purpose:** Identify whether Dual Language applicants are less likely to receive offers.
+
+**SQL:**
+
+```sql
+SELECT
+  dual_language,
+  SUM(seat_offers) AS total_offers,
+  SUM(applications) AS total_applications,
+  ROUND(
+    (SUM(seat_offers)::DECIMAL / NULLIF(SUM(applications), 0)) * 100,
+    2
+  ) AS acceptance_rate_percent
+FROM
+  public.dual_language_applications
+GROUP BY
+  dual_language;
+```
+
+**Output Summary:**
+
+| Dual Language | Total Offers | Total Applications | Acceptance Rate (%) |
+| ------------- | ------------ | ------------------ | ------------------- |
+| No            | 30,185       | 150,439            | 20.06               |
+| Yes           | 1,600        | 10,973             | 14.58               |
+
+**Insight:**
+Dual Language applicants have a lower acceptance rate (**14.58%**) compared to general applicants (**20.06%**). This suggests that Dual Language students may be at a disadvantage in the admissions process and merit closer examination by LAUSD to determine if program availability or policy gaps are contributing factors.
+
+**Equity Recommendation:**
+LAUSD should investigate:
+
+* Whether sufficient seats are allocated to Dual Language programs.
+* If demand outpaces supply in specific regions or language tracks.
+* Policy mechanisms ensuring fair access to bilingual opportunities.
