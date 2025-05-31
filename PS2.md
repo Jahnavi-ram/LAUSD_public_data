@@ -108,4 +108,19 @@ We selected the following relevant columns:
 
 ---
 
-✅ Ready for analysis. Next: Step-by-step queries to explore admission disparities for Dual Language applicants.
+### 🛠️ Step 3: Importing to PostgreSQL
+
+We created the following table in PostgreSQL to store the cleaned Dual Language admissions dataset:
+
+```sql
+CREATE TABLE dual_language_applications (
+    program_name TEXT,
+    school TEXT,
+    school_type TEXT,
+    community_of_schools TEXT,
+    zip_code VARCHAR(5),
+    dual_language TEXT,
+    applications INT,
+    seat_offers INT
+);
+
