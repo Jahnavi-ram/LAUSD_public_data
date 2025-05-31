@@ -123,6 +123,8 @@ CREATE TABLE dual_language_applications (
     applications INT,
     seat_offers INT
 );
+
+---
 ### Query 1: Total Applications – Dual vs Non-Dual
 
 **Purpose:**
